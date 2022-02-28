@@ -40,26 +40,110 @@ export default function paginaTopicos(){
                         padding: '16px',
                     }}
                     >
-                    <Box
-                    as="form"
-                    onSubmit={function (infosDoEvento) {
-                        infosDoEvento.preventDefault()
-                        console.log('Alguém submeteu o form')
-                        roteamento.push(`/saposAmericaSul?username=${usuarioLogado}`)
+                    <Button
+                    onClick={ () => {
+                    roteamento.push(`/saposAmericaSul?username=${usuarioLogado}`)
                     }}
-                    >
-                        <Button
-                        type='submit'
-                        label='Sapos da America do Sul'
-                        fullWidth
-                        buttonColors={{
-                        contrastColor: appConfig.theme.colors.neutrals["000"],
-                        mainColor: appConfig.theme.colors.primary["500"],
-                        mainColorLight: appConfig.theme.colors.primary["400"],
-                        mainColorStrong: appConfig.theme.colors.primary["600"],
-                        }}
-                        />
-                    </Box>
+                    label='Sapos da America do Sul'
+                    fullWidth
+                    buttonColors={{
+                    contrastColor: appConfig.theme.colors.neutrals["000"],
+                    mainColor: appConfig.theme.colors.primary["500"],
+                    mainColorLight: appConfig.theme.colors.primary["400"],
+                    mainColorStrong: appConfig.theme.colors.primary["600"],
+                    }}
+                    />
+                    <Button
+                    onClick={ () => {
+                    roteamento.push(`/saposAmericaNorte?username=${usuarioLogado}`)
+                    }}
+                    label='Sapos da America do Norte'
+                    fullWidth
+                    buttonColors={{
+                    contrastColor: appConfig.theme.colors.neutrals["000"],
+                    mainColor: appConfig.theme.colors.primary["500"],
+                    mainColorLight: appConfig.theme.colors.primary["400"],
+                    mainColorStrong: appConfig.theme.colors.primary["600"],
+                    }}
+                    />
+                    <Button
+                    onClick={ () => {
+                    roteamento.push(`/saposAfrica?username=${usuarioLogado}`)
+                    }}
+                    label='Sapos da Africa'
+                    fullWidth
+                    buttonColors={{
+                    contrastColor: appConfig.theme.colors.neutrals["000"],
+                    mainColor: appConfig.theme.colors.primary["500"],
+                    mainColorLight: appConfig.theme.colors.primary["400"],
+                    mainColorStrong: appConfig.theme.colors.primary["600"],
+                    }}
+                    />
+                    <Button
+                    onClick={ () => {
+                    roteamento.push(`/saposAsia?username=${usuarioLogado}`)
+                    }}
+                    label='Sapos da Asia'
+                    fullWidth
+                    buttonColors={{
+                    contrastColor: appConfig.theme.colors.neutrals["000"],
+                    mainColor: appConfig.theme.colors.primary["500"],
+                    mainColorLight: appConfig.theme.colors.primary["400"],
+                    mainColorStrong: appConfig.theme.colors.primary["600"],
+                    }}
+                    />
+                    <Button
+                    onClick={ () => {
+                    roteamento.push(`/saposEuropa?username=${usuarioLogado}`)
+                    }}
+                    label='Sapos da Europa'
+                    fullWidth
+                    buttonColors={{
+                    contrastColor: appConfig.theme.colors.neutrals["000"],
+                    mainColor: appConfig.theme.colors.primary["500"],
+                    mainColorLight: appConfig.theme.colors.primary["400"],
+                    mainColorStrong: appConfig.theme.colors.primary["600"],
+                    }}
+                    />
+                    <Button
+                    onClick={ () => {
+                    roteamento.push(`/saposOceania?username=${usuarioLogado}`)
+                    }}
+                    label='Sapos da Oceania'
+                    fullWidth
+                    buttonColors={{
+                    contrastColor: appConfig.theme.colors.neutrals["000"],
+                    mainColor: appConfig.theme.colors.primary["500"],
+                    mainColorLight: appConfig.theme.colors.primary["400"],
+                    mainColorStrong: appConfig.theme.colors.primary["600"],
+                    }}
+                    />
+                    <Button
+                    onClick={ () => {
+                    roteamento.push(`/saposExoticos?username=${usuarioLogado}`)
+                    }}
+                    label='Sapos de aparencia Exotica'
+                    fullWidth
+                    buttonColors={{
+                    contrastColor: appConfig.theme.colors.neutrals["000"],
+                    mainColor: appConfig.theme.colors.primary["500"],
+                    mainColorLight: appConfig.theme.colors.primary["400"],
+                    mainColorStrong: appConfig.theme.colors.primary["600"],
+                    }}
+                    />
+                    <Button
+                    onClick={ () => {
+                    roteamento.push(`/saposSuper?username=${usuarioLogado}`)
+                    }}
+                    label='Sapos com super poderes'
+                    fullWidth
+                    buttonColors={{
+                    contrastColor: appConfig.theme.colors.neutrals["000"],
+                    mainColor: appConfig.theme.colors.primary["500"],
+                    mainColorLight: appConfig.theme.colors.primary["400"],
+                    mainColorStrong: appConfig.theme.colors.primary["600"],
+                    }}
+                    />
                 </Box>
             </Box>
         </Box>

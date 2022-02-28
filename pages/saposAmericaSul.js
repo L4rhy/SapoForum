@@ -5,7 +5,7 @@ import appConfig from '../config.json';
 
 export default function paginaSaposSul(){
     const roteamento = useRouter();
-    const usuarioLogado = roteamento.query.usuarioLogado
+    const usuarioLogado = roteamento.query.username
     return (
         <Box
             styleSheet={{
@@ -40,9 +40,20 @@ export default function paginaSaposSul(){
                         padding: '16px',
                     }}
                 >
-                <TextField>
+                <TextField
+                placeholder='Escreva no topico'
+                fullWidth
+                textFieldColors={{
+                  neutral: {
+                    textColor: appConfig.theme.colors.neutrals["200"],
+                    mainColor: appConfig.theme.colors.neutrals["900"],
+                    mainColorHighlight: appConfig.theme.colors.primary["500"],
+                    backgroundColor: appConfig.theme.colors.neutrals["800"],
+                  },
+                }}
+                />
                 
-                </TextField>    
+                   
                 </Box>
             </Box>
         </Box>
