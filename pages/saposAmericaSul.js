@@ -3,9 +3,9 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import appConfig from '../config.json';
 
-export default function paginaTopicos(){
+export default function paginaSaposSul(){
     const roteamento = useRouter();
-    const usuarioLogado = roteamento.query.username
+    const usuarioLogado = roteamento.query.usuarioLogado
     return (
         <Box
             styleSheet={{
@@ -39,27 +39,10 @@ export default function paginaTopicos(){
                         borderRadius: '5px',
                         padding: '16px',
                     }}
-                    >
-                    <Box
-                    as="form"
-                    onSubmit={function (infosDoEvento) {
-                        infosDoEvento.preventDefault()
-                        console.log('Alguém submeteu o form')
-                        roteamento.push(`/saposAmericaSul?username=${usuarioLogado}`)
-                    }}
-                    >
-                        <Button
-                        type='submit'
-                        label='Sapos da America do Sul'
-                        fullWidth
-                        buttonColors={{
-                        contrastColor: appConfig.theme.colors.neutrals["000"],
-                        mainColor: appConfig.theme.colors.primary["500"],
-                        mainColorLight: appConfig.theme.colors.primary["400"],
-                        mainColorStrong: appConfig.theme.colors.primary["600"],
-                        }}
-                        />
-                    </Box>
+                >
+                <TextField>
+                
+                </TextField>    
                 </Box>
             </Box>
         </Box>
@@ -71,7 +54,7 @@ export default function paginaTopicos(){
         <>
             <Box styleSheet={{ width: '100%', marginBottom: '16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }} >
                 <Text variant='heading5'>
-                    Topicos
+                    Sapos da America do Sul
                 </Text>
                 <Text>
                     {props.usuarioLogado}
