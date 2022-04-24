@@ -40,6 +40,7 @@ export default function paginaTopicos(){
                         padding: '16px',
                     }}
                     >
+                <ul>
                     <Button
                     onClick={ () => {
                     roteamento.push(`/saposAmericaSul?username=${usuarioLogado}`)
@@ -144,6 +145,7 @@ export default function paginaTopicos(){
                     mainColorStrong: appConfig.theme.colors.primary["600"],
                     }}
                     />
+                </ul>
                 </Box>
             </Box>
         </Box>
