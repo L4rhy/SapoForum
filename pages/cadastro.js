@@ -20,6 +20,7 @@ import {firebase, app, auth} from "./firebase/firebase"
     );
   }
   export default function PaginaInicial() {
+    const [username, setUsername] = React.useState("");
     const [email, setEmail] = React.useState("");
     const [password, setPassord] = React.useState("");
     const [some,setSome] = React.useState("0");
@@ -51,15 +52,23 @@ import {firebase, app, auth} from "./firebase/firebase"
             {/* Formulário */}
             <Box
               as="form"
-              onSubmit={function (infosDoEvento){
+              onSubmit={function (infosDoEvento) {
                 infosDoEvento.preventDefault()
                 console.log('Alguém submeteu o form')
+                firebase.auth().createUserWithEmailAndPassword(email, password)
+                .then(()=> alert("usuario castrado"))
+                .catch((error)=> console.log(error))
                 firebase.auth().signInWithEmailAndPassword(email, password)
-                .then(()=> console.log("login feito"))
-                .catch((error)=>
-                console.log(error))
+                .then(()=> alert("usuario logado"))
+                .catch((error)=> console.log(error))
+                const user =firebase.auth().currentUser
+                user.updateProfile({
+                    displayName : username,
+                    photoURL : "https://www.google.com/imgres?imgurl=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2015%2F10%2F05%2F22%2F37%2Fblank-profile-picture-973460_640.png&imgrefurl=https%3A%2F%2Fpixabay.com%2Fpt%2Fvectors%2Ffoto-de-perfil-em-branco-973460%2F&tbnid=ScRGRFGMiXHWfM&vet=12ahUKEwjs67_FtrL3AhUTMLkGHaAmDn0QMygAegQIARBG..i&docid=CaqOTE768pk6hM&w=640&h=640&q=foto%20usuario%20vazia&client=opera-gx&ved=2ahUKEwjs67_FtrL3AhUTMLkGHaAmDn0QMygAegQIARBG"
+                })
+                .then(()=>alert("usuario completo"))
+                .catch((error)=> console.log(error))
                 roteamento.push("/foruns")
-
               }}
               styleSheet={{
                 display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
@@ -70,7 +79,30 @@ import {firebase, app, auth} from "./firebase/firebase"
               <Text variant="body3" styleSheet={{ marginBottom: '32px', color: appConfig.theme.colors.neutrals["300"] }}>
                 {appConfig.name}
               </Text>
-  
+              <TextField
+                placeholder='nome'
+                value={username}
+                onChange={function (event) {
+                  console.log('usuario digitou', event.target.value)
+                  const valor = event.target.value
+                  setUsername(valor)
+                    if(valor.length>2){
+                      setSome("0")
+                    }else{
+                      setSome("1")
+                    }
+                  console.log(some);
+                }}
+                fullWidth
+                textFieldColors={{
+                  neutral: {
+                    textColor: appConfig.theme.colors.neutrals["200"],
+                    mainColor: appConfig.theme.colors.neutrals["900"],
+                    mainColorHighlight: appConfig.theme.colors.primary["500"],
+                    backgroundColor: appConfig.theme.colors.neutrals["800"],
+                  },
+                }}
+              />
               <TextField
                 placeholder='email'
                 value={email}
@@ -132,47 +164,6 @@ import {firebase, app, auth} from "./firebase/firebase"
               />
             </Box>
             {/* Formulário */}
-  
-  
-            {/* Photo Area */}
-            <Box
-            styleSheet={{
-            display:"flex",
-            flexDirection: 'column',
-            gap: "25px 25px"
-            }}>
-              <Button
-              onClick={()=>
-              roteamento.push("/cadastro")
-              }
-              label='Cadastrar'
-              buttonColors={{
-                contrastColor: appConfig.theme.colors.neutrals["000"],
-                mainColor: appConfig.theme.colors.primary["500"],
-                mainColorLight: appConfig.theme.colors.primary["400"],
-                mainColorStrong: appConfig.theme.colors.primary["600"],
-              }}
-              />
-              <Button
-              label='Google'
-              buttonColors={{
-                contrastColor: appConfig.theme.colors.neutrals["000"],
-                mainColor: appConfig.theme.colors.primary["500"],
-                mainColorLight: appConfig.theme.colors.primary["400"],
-                mainColorStrong: appConfig.theme.colors.primary["600"],
-              }}
-              />
-              <Button
-              label='GitHub'
-              buttonColors={{
-                contrastColor: appConfig.theme.colors.neutrals["000"],
-                mainColor: appConfig.theme.colors.primary["500"],
-                mainColorLight: appConfig.theme.colors.primary["400"],
-                mainColorStrong: appConfig.theme.colors.primary["600"],
-              }}
-              />
-            </Box>
-            {/* Photo Area */}
           </Box>
         </Box>
       </>

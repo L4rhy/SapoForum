@@ -68,7 +68,7 @@ export default function paginaSaposSul(){
                     Sapos Exoticos
                 </Text>
                 <Text>
-                    {props.usuarioLogado}
+                    {}
                 </Text>
                 <Button
                     variant='tertiary'

@@ -32,7 +32,6 @@ export default function paginaTopicos(){
                     styleSheet={{
                         position: 'relative',
                         display: 'flex',
-                        
                         gap: "25px 25px",
                         height: '80%',
                         backgroundColor: appConfig.theme.colors.neutrals[600],

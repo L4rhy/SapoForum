@@ -68,7 +68,7 @@ export default function paginaSaposSul(){
                     Sapos da America do Sul
                 </Text>
                 <Text>
-                    {props.usuarioLogado}
+                    {}
                 </Text>
                 <Button
                     variant='tertiary'
