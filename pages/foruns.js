@@ -32,7 +32,8 @@ export default function paginaTopicos(){
                     styleSheet={{
                         position: 'relative',
                         display: 'flex',
-                        flex: 1,
+                        
+                        gap: "25px 25px",
                         height: '80%',
                         backgroundColor: appConfig.theme.colors.neutrals[600],
                         flexDirection: 'column',
@@ -40,7 +41,7 @@ export default function paginaTopicos(){
                         padding: '16px',
                     }}
                     >
-                <ul>
+                
                     <Button
                     onClick={ () => {
                     roteamento.push(`/saposAmericaSul?username=${usuarioLogado}`)
@@ -51,7 +52,8 @@ export default function paginaTopicos(){
                     contrastColor: appConfig.theme.colors.neutrals["000"],
                     mainColor: appConfig.theme.colors.primary["500"],
                     mainColorLight: appConfig.theme.colors.primary["400"],
-                    mainColorStrong: appConfig.theme.colors.primary["600"],
+                    mainColorStrong: appConfig.theme.colors.primary["600"], 
+                    
                     }}
                     />
                     <Button
@@ -78,6 +80,7 @@ export default function paginaTopicos(){
                     mainColor: appConfig.theme.colors.primary["500"],
                     mainColorLight: appConfig.theme.colors.primary["400"],
                     mainColorStrong: appConfig.theme.colors.primary["600"],
+                    margin: 25,
                     }}
                     />
                     <Button
@@ -91,6 +94,7 @@ export default function paginaTopicos(){
                     mainColor: appConfig.theme.colors.primary["500"],
                     mainColorLight: appConfig.theme.colors.primary["400"],
                     mainColorStrong: appConfig.theme.colors.primary["600"],
+                    margin: 25,
                     }}
                     />
                     <Button
@@ -104,6 +108,7 @@ export default function paginaTopicos(){
                     mainColor: appConfig.theme.colors.primary["500"],
                     mainColorLight: appConfig.theme.colors.primary["400"],
                     mainColorStrong: appConfig.theme.colors.primary["600"],
+                    margin: 25,
                     }}
                     />
                     <Button
@@ -117,6 +122,7 @@ export default function paginaTopicos(){
                     mainColor: appConfig.theme.colors.primary["500"],
                     mainColorLight: appConfig.theme.colors.primary["400"],
                     mainColorStrong: appConfig.theme.colors.primary["600"],
+                    margin: 25,
                     }}
                     />
                     <Button
@@ -130,6 +136,7 @@ export default function paginaTopicos(){
                     mainColor: appConfig.theme.colors.primary["500"],
                     mainColorLight: appConfig.theme.colors.primary["400"],
                     mainColorStrong: appConfig.theme.colors.primary["600"],
+                    margin: 25,
                     }}
                     />
                     <Button
@@ -143,9 +150,9 @@ export default function paginaTopicos(){
                     mainColor: appConfig.theme.colors.primary["500"],
                     mainColorLight: appConfig.theme.colors.primary["400"],
                     mainColorStrong: appConfig.theme.colors.primary["600"],
+                    margin: 25,
                     }}
                     />
-                </ul>
                 </Box>
             </Box>
         </Box>
