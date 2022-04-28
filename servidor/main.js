@@ -12,7 +12,7 @@ const db = mysql.createPool({
 app.use(cors())
 app.use(express.json())
 
-app.post("/saposAfrica"), (req, res)=>{
+app.post("/saposAfricaRegistro"), (req, res)=>{
     const {nome} = req.body
     const {titulo} = req.body
     const {texto} = req.body

@@ -1,8 +1,9 @@
-import React from 'react';
-import authProvider from './contesto/authContext';
+import React from "react";
+import authProvider from "./contexto/authContext";
+
 function GlobalStyle() {
-    return (
-        <style global jsx>{`
+  return (
+    <style global jsx>{`
       * {
         margin: 0;
         padding: 0;
@@ -10,10 +11,12 @@ function GlobalStyle() {
         list-style: none;
       }
       body {
-        font-family: 'Open Sans', sans-serif;
+        font-family: "Open Sans", sans-serif;
       }
-      /* App fit Height */ 
-      html, body, #__next {
+      /* App fit Height */
+      html,
+      body,
+      #__next {
         min-height: 100vh;
         display: flex;
         flex: 1;
@@ -24,19 +27,18 @@ function GlobalStyle() {
       #__next > * {
         flex: 1;
       }
-      /* ./App fit Height */ 
+      /* ./App fit Height */
     `}</style>
-    );
-  }
-  
-  export default function CustomApp({ Component, pageProps }) {
-    console.log('Roda em todas as páginas!');
-    return (
-      <>
-      <authProvider>
+  );
+}
+
+export default function CustomApp({ Component, pageProps }) {
+  return (
+    <>
+      
         <GlobalStyle />
         <Component {...pageProps} />
-      </authProvider>
-      </>
-    );
-  }
+      
+    </>
+  );
+}
