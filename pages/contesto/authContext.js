@@ -1,11 +1,19 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { useState, useContext } from "react";
 
-const authContext = createContext({})
-export default function authContextProvider(props){
-    const [usuarioLogado, setUsuarioLogado] = useState()
+export const authContext = React.createContext()
+export default function authProvider(props){
+    const [usuarioLogado, setUsuarioLogado] = useState({
+        nome: "",
+        avatar: ""
+    })
+    console.log(props)
     return (
     <authContext.Provider value={{usuarioLogado, setUsuarioLogado}}>
-        {props.children}
+        {props}
     </authContext.Provider>
     )
+}
+export function useUsuario(){
+    const context =  useContext(authContext)
+    return context
 }

@@ -1,9 +1,9 @@
 import { Box, Button, Text, TextField } from '@skynexui/components';
-import React, { useContext, useEffect, useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import appConfig from '../config.json';
 import {firebase, auth} from "./firebase/firebase"
-import { authContext} from './contesto/authContext';
+import  useUsuario  from './contesto/authContext';
 
   function Titulo(props) {
     const Tag = props.tag || 'h1';
@@ -21,15 +21,19 @@ import { authContext} from './contesto/authContext';
     );
   }
   export default function PaginaInicial() {
-    
-    const {usuarioLogado, setUsuarioLogado} = useContext(authContext)
+    const usuario = useUsuario()
+    console.log(usuario)
+    const {usuarioLogado, SetUsuarioLogado} = usuario
+    console.log(usuarioLogado)
+    console.log(SetUsuarioLogado)
+
+
     const [email, setEmail] = React.useState("");
     const [password, setPassord] = React.useState("");
     const [some,setSome] = React.useState("0");
     const roteamento = useRouter();
     
     const handlerGoogle = async () => {
-    
       const provider = new firebase.auth.GoogleAuthProvider();
       const result = await auth.signInWithPopup(provider)
     }
@@ -37,18 +41,26 @@ import { authContext} from './contesto/authContext';
       const provider = new firebase.auth.GithubAuthProvider();
       const result = await auth.signInWithPopup(provider)
     }
+
     useEffect(()=>{
       firebase.auth().onAuthStateChanged((user)=>{
         if(user){
-          setUsuarioLogado(user)
-          console.log(usuarioLogado)
+          console.log(user)
+          const {displayName, photoURL} = user
+          usuario.props.value.setUsuarioLogado(
+            {
+              nome: displayName,
+              avatar: photoURL,
+            }
+          )
+          console.log("usuario logou")
           roteamento.push("/foruns")
-        }
-        else{
-          console.log("usuario deslogado")
+        }else{
+          console.log("sem usuario")
         }
       })
     },[])
+
     return (
       <>
         <Box

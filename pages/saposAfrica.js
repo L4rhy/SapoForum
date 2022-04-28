@@ -10,14 +10,20 @@ export default function paginaSaposAfrica(){
     const [titulo, setTitulo] = useState("")
     const [texto, setTexto] = useState("")
     const [listaDePost, setListaDePost] = useState([])
-    const {usuarioLogado, setUsuarioLogado} = useContext(authContext)
+    
+    const usuario = useUsuario()
+    console.log(usuario)
+    const {usuarioLogado, SetUsuarioLogado} = usuario
     console.log(usuarioLogado)
+    console.log(SetUsuarioLogado)
+    console.log(usuarioLogado)
+
     function handleNovoPost( ){
         Axios.post("http://localhost:3001/saposAfrica", {
-            nome: user.displayName,
+            nome: usuarioLogado.nome,
             titulo: titulo,
             texto: texto,
-            foto: user.photoURL
+            foto: usuarioLogado.avatar
         })
     }
     return (
@@ -141,10 +147,10 @@ export default function paginaSaposAfrica(){
                     display: 'inline-block',
                     marginRight: '8px',
                 }}
-                src={props.usuarioLogado.photoURL}
+                src={props.usuarioLogado.avatar}
                 />
                 <Text>
-                {props.usuarioLogado.displayName}
+                {props.usuarioLogado.nome}
                 </Text>
                 <Button
                     onClick={firebase.auth().signOut()}

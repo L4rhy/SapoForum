@@ -3,12 +3,16 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import appConfig from '../config.json';
 import {firebase, auth} from "./firebase/firebase"
-import { authContext } from './contesto/authContext';
+import useUsuario  from './contesto/authContext';
 
 export default function paginaTopicos(){
     const roteamento = useRouter();
-    const {usuarioLogado, setUsuarioLogado} = useContext(authContext)
+    const usuario = useUsuario()
+    console.log(usuario)
+    const {usuarioLogado, SetUsuarioLogado} = usuario
     console.log(usuarioLogado)
+    console.log(SetUsuarioLogado)
+   
     return (
         <Box
             styleSheet={{
@@ -32,7 +36,7 @@ export default function paginaTopicos(){
                     padding: '32px',
                 }}
             >
-                <Header usuarioLogado={usuarioLogado}/>
+                <Header usuarioLogado={usuario}/>
                 <Box
                     styleSheet={{
                         position: 'relative',
@@ -177,10 +181,10 @@ export default function paginaTopicos(){
                     display: 'inline-block',
                     marginRight: '8px',
                 }}
-                src={props.usuarioLogado.photoURL}
+                src={props.usuarioLogado.avatar}
                 />
                 <Text>
-                    {props.usuarioLogado.displayName}
+                    {props.usuarioLogado.nome}
                 </Text>
                 <Button
                     onClick={firebase.auth().signOut()}
