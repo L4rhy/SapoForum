@@ -2,15 +2,20 @@ import { Box, Button, Text, TextField, Image } from '@skynexui/components';
 import React from 'react';
 import { useRouter } from 'next/router';
 import appConfig from '../config.json';
+import {firebase, auth} from "./firebase/firebase"
+import { authContext } from './contesto/authContext';
 
 export default function paginaTopicos(){
     const roteamento = useRouter();
-    const usuarioLogado = roteamento.query.username
+    const {usuarioLogado, setUsuarioLogado} = useContext(authContext)
+    console.log(usuarioLogado)
     return (
         <Box
             styleSheet={{
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 backgroundColor: appConfig.theme.colors.primary[500],
+                backgroundImage: "url(https://i.pinimg.com/564x/5e/e8/ca/5ee8cae49e26467bc13e0b1e214c0c62.jpg)",
+                backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundBlendMode: 'multiply',
             }}
         >
             <Box
@@ -40,37 +45,9 @@ export default function paginaTopicos(){
                         padding: '16px',
                     }}
                     >
-                
                     <Button
                     onClick={ () => {
-                    roteamento.push(`/saposAmericaSul?username=${usuarioLogado}`)
-                    }}
-                    label='Sapos da America do Sul'
-                    fullWidth
-                    buttonColors={{
-                    contrastColor: appConfig.theme.colors.neutrals["000"],
-                    mainColor: appConfig.theme.colors.primary["500"],
-                    mainColorLight: appConfig.theme.colors.primary["400"],
-                    mainColorStrong: appConfig.theme.colors.primary["600"], 
-                    
-                    }}
-                    />
-                    <Button
-                    onClick={ () => {
-                    roteamento.push(`/saposAmericaNorte?username=${usuarioLogado}`)
-                    }}
-                    label='Sapos da America do Norte'
-                    fullWidth
-                    buttonColors={{
-                    contrastColor: appConfig.theme.colors.neutrals["000"],
-                    mainColor: appConfig.theme.colors.primary["500"],
-                    mainColorLight: appConfig.theme.colors.primary["400"],
-                    mainColorStrong: appConfig.theme.colors.primary["600"],
-                    }}
-                    />
-                    <Button
-                    onClick={ () => {
-                    roteamento.push(`/saposAfrica?username=${usuarioLogado}`)
+                    roteamento.push(`/saposAfrica`)
                     }}
                     label='Sapos da Africa'
                     fullWidth
@@ -84,7 +61,34 @@ export default function paginaTopicos(){
                     />
                     <Button
                     onClick={ () => {
-                    roteamento.push(`/saposAsia?username=${usuarioLogado}`)
+                        roteamento.push(`/saposAmericaNorte`)
+                    }}
+                    label='Sapos da America do Norte'
+                    fullWidth
+                    buttonColors={{
+                        contrastColor: appConfig.theme.colors.neutrals["000"],
+                        mainColor: appConfig.theme.colors.primary["500"],
+                        mainColorLight: appConfig.theme.colors.primary["400"],
+                        mainColorStrong: appConfig.theme.colors.primary["600"],
+                    }}
+                    />
+                    <Button
+                    onClick={ () => {
+                    roteamento.push(`/saposAmericaSul`)
+                    }}
+                    label='Sapos da America do Sul'
+                    fullWidth
+                    buttonColors={{
+                    contrastColor: appConfig.theme.colors.neutrals["000"],
+                    mainColor: appConfig.theme.colors.primary["500"],
+                    mainColorLight: appConfig.theme.colors.primary["400"],
+                    mainColorStrong: appConfig.theme.colors.primary["600"], 
+                    
+                    }}
+                    />
+                    <Button
+                    onClick={ () => {
+                    roteamento.push(`/saposAsia`)
                     }}
                     label='Sapos da Asia'
                     fullWidth
@@ -98,7 +102,7 @@ export default function paginaTopicos(){
                     />
                     <Button
                     onClick={ () => {
-                    roteamento.push(`/saposEuropa?username=${usuarioLogado}`)
+                    roteamento.push(`/saposEuropa`)
                     }}
                     label='Sapos da Europa'
                     fullWidth
@@ -112,7 +116,7 @@ export default function paginaTopicos(){
                     />
                     <Button
                     onClick={ () => {
-                    roteamento.push(`/saposOceania?username=${usuarioLogado}`)
+                    roteamento.push(`/saposOceania`)
                     }}
                     label='Sapos da Oceania'
                     fullWidth
@@ -126,7 +130,7 @@ export default function paginaTopicos(){
                     />
                     <Button
                     onClick={ () => {
-                    roteamento.push(`/saposExoticos?username=${usuarioLogado}`)
+                    roteamento.push(`/saposExoticos`)
                     }}
                     label='Sapos de aparencia Exotica'
                     fullWidth
@@ -140,7 +144,7 @@ export default function paginaTopicos(){
                     />
                     <Button
                     onClick={ () => {
-                    roteamento.push(`/saposSuper?username=${usuarioLogado}`)
+                    roteamento.push(`/saposSuper`)
                     }}
                     label='Sapos com super poderes'
                     fullWidth
@@ -165,10 +169,21 @@ export default function paginaTopicos(){
                 <Text variant='heading5'>
                     Topicos
                 </Text>
+                <Image
+                styleSheet={{
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '50%',
+                    display: 'inline-block',
+                    marginRight: '8px',
+                }}
+                src={props.usuarioLogado.photoURL}
+                />
                 <Text>
-                    {props.usuarioLogado}
+                    {props.usuarioLogado.displayName}
                 </Text>
                 <Button
+                    onClick={firebase.auth().signOut()}
                     variant='tertiary'
                     colorVariant='neutral'
                     label='Logout'

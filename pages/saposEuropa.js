@@ -3,7 +3,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import appConfig from '../config.json';
 
-export default function paginaSaposSul(){
+export default function paginaSaposEuropa(){
     const roteamento = useRouter();
     const usuarioLogado = roteamento.query.username
     return (
@@ -11,6 +11,8 @@ export default function paginaSaposSul(){
             styleSheet={{
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 backgroundColor: appConfig.theme.colors.primary[500],
+                backgroundImage: "url(https://i.pinimg.com/564x/5e/e8/ca/5ee8cae49e26467bc13e0b1e214c0c62.jpg)",
+                backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundBlendMode: 'multiply',
             }}
         >
             <Box

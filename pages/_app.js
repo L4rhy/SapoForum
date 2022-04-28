@@ -1,3 +1,5 @@
+import React  from 'react';
+import  authContextProvider  from './contesto/authContext';
 function GlobalStyle() {
     return (
         <style global jsx>{`
@@ -30,9 +32,11 @@ function GlobalStyle() {
   export default function CustomApp({ Component, pageProps }) {
     console.log('Roda em todas as páginas!');
     return (
-        <>
+      
+      <authContextProvider>
             <GlobalStyle />
             <Component {...pageProps} />
-        </>
+      </authContextProvider>
+    
     );
   }

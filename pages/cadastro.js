@@ -32,6 +32,8 @@ import {firebase, app, auth} from "./firebase/firebase"
           styleSheet={{
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             backgroundColor: appConfig.theme.colors.primary["500"],
+            backgroundImage: "url(https://i.pinimg.com/564x/5e/e8/ca/5ee8cae49e26467bc13e0b1e214c0c62.jpg)",
+            backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundBlendMode: 'multiply',
           }}
         >
           <Box
@@ -75,7 +77,7 @@ import {firebase, app, auth} from "./firebase/firebase"
                 width: { xs: '100%', sm: '50%' }, textAlign: 'center', marginBottom: '32px',
               }}
             >
-              <Titulo tag="h2">Bem Vinde! ao Sapo Forum</Titulo>
+              <Titulo tag="h2">Cadastro no sapo forum</Titulo>
               <Text variant="body3" styleSheet={{ marginBottom: '32px', color: appConfig.theme.colors.neutrals["300"] }}>
                 {appConfig.name}
               </Text>
@@ -129,6 +131,7 @@ import {firebase, app, auth} from "./firebase/firebase"
               />
               <TextField
                 placeholder='senha'
+                type='password'
                 value={password}
                 onChange={function (event) {
                   console.log('usuario digitou', event.target.value)

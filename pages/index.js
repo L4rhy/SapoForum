@@ -1,8 +1,9 @@
-import { Box, Button, Text, TextField, Image } from '@skynexui/components';
-import React from 'react';
+import { Box, Button, Text, TextField } from '@skynexui/components';
+import React, { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import appConfig from '../config.json';
-import {firebase, app, auth} from "./firebase/firebase"
+import {firebase, auth} from "./firebase/firebase"
+import { authContext} from './contesto/authContext';
 
   function Titulo(props) {
     const Tag = props.tag || 'h1';
@@ -20,17 +21,42 @@ import {firebase, app, auth} from "./firebase/firebase"
     );
   }
   export default function PaginaInicial() {
+    
+    const {usuarioLogado, setUsuarioLogado} = useContext(authContext)
     const [email, setEmail] = React.useState("");
     const [password, setPassord] = React.useState("");
     const [some,setSome] = React.useState("0");
     const roteamento = useRouter();
     
+    const handlerGoogle = async () => {
+    
+      const provider = new firebase.auth.GoogleAuthProvider();
+      const result = await auth.signInWithPopup(provider)
+    }
+    const handlerGitHub = async () => {
+      const provider = new firebase.auth.GithubAuthProvider();
+      const result = await auth.signInWithPopup(provider)
+    }
+    useEffect(()=>{
+      firebase.auth().onAuthStateChanged((user)=>{
+        if(user){
+          setUsuarioLogado(user)
+          console.log(usuarioLogado)
+          roteamento.push("/foruns")
+        }
+        else{
+          console.log("usuario deslogado")
+        }
+      })
+    },[])
     return (
       <>
         <Box
           styleSheet={{
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             backgroundColor: appConfig.theme.colors.primary["500"],
+            backgroundImage: "url(https://i.pinimg.com/564x/5e/e8/ca/5ee8cae49e26467bc13e0b1e214c0c62.jpg)",
+            backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundBlendMode: 'multiply',
           }}
         >
           <Box
@@ -58,8 +84,6 @@ import {firebase, app, auth} from "./firebase/firebase"
                 .then(()=> console.log("login feito"))
                 .catch((error)=>
                 console.log(error))
-                roteamento.push("/foruns")
-
               }}
               styleSheet={{
                 display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
@@ -96,6 +120,7 @@ import {firebase, app, auth} from "./firebase/firebase"
                 }}
               />
               <TextField
+                type='password'
                 placeholder='senha'
                 value={password}
                 onChange={function (event) {
@@ -154,6 +179,9 @@ import {firebase, app, auth} from "./firebase/firebase"
               }}
               />
               <Button
+              onClick={
+                handlerGoogle
+              } 
               label='Google'
               buttonColors={{
                 contrastColor: appConfig.theme.colors.neutrals["000"],
@@ -163,6 +191,9 @@ import {firebase, app, auth} from "./firebase/firebase"
               }}
               />
               <Button
+              onClick={
+                handlerGitHub
+              }
               label='GitHub'
               buttonColors={{
                 contrastColor: appConfig.theme.colors.neutrals["000"],
