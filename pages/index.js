@@ -21,7 +21,7 @@ function Titulo(props) {
   );
 }
 export default function PaginaInicial() {
-  
+  console.log(useUsuario())
   const { usuarioLogado, setUsuarioLogado } = useUsuario();
   console.log(usuarioLogado);
   console.log(setUsuarioLogado);
