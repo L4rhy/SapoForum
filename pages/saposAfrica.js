@@ -13,9 +13,9 @@ export default function paginaSaposAfrica() {
 
   const usuario = useUsuario();
   console.log(usuario);
-  const { usuarioLogado, SetUsuarioLogado } = usuario;
+  const { usuarioLogado, setUsuarioLogado } = usuario;
   console.log(usuarioLogado);
-  console.log(SetUsuarioLogado);
+  console.log(setUsuarioLogado);
   console.log(usuarioLogado);
 
   function handleNovoPost() {

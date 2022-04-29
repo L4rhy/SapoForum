@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import appConfig from "../config.json";
 import { firebase, auth } from "./firebase/firebase";
-import useUsuario from "./contexto/authContext";
+import { useUsuario } from "./contexto/authContext";
 
 function Titulo(props) {
   const Tag = props.tag || "h1";
@@ -21,11 +21,10 @@ function Titulo(props) {
   );
 }
 export default function PaginaInicial() {
-  //const usuario = useUsuario();
-  //console.log(usuario);
-  //const { usuarioLogado, SetUsuarioLogado } = usuario;
- //console.log(usuarioLogado);
-  //console.log(SetUsuarioLogado);
+  
+  const { usuarioLogado, setUsuarioLogado } = useUsuario();
+  console.log(usuarioLogado);
+  console.log(setUsuarioLogado);
 
   const [email, setEmail] = React.useState("");
   const [password, setPassord] = React.useState("");
@@ -46,10 +45,10 @@ export default function PaginaInicial() {
       if (user) {
         console.log(user);
         const { displayName, photoURL } = user;
-        /*usuario.props.value.setUsuarioLogado({
+        setUsuarioLogado({
           nome: displayName,
           avatar: photoURL,
-        });*/
+        })
         console.log("usuario logou");
         roteamento.push("/foruns");
       } else {

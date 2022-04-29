@@ -35,10 +35,10 @@ function GlobalStyle() {
 export default function CustomApp({ Component, pageProps }) {
   return (
     <>
-      
+        <authProvider>
         <GlobalStyle />
         <Component {...pageProps} />
-      
+        </authProvider>
     </>
   );
 }
